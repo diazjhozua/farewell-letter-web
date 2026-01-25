@@ -1,36 +1,101 @@
 class FarewellLetterViewer {
     constructor() {
+        this.introSlides = [];
         this.letters = [];
         this.currentIndex = 0;
         this.isAnimating = false;
         this.startX = 0;
         this.currentX = 0;
         this.isDragging = false;
+        this.mode = 'intro'; // 'intro' or 'letters'
 
         this.init();
     }
 
     async init() {
         this.bindElements();
-        await this.loadLetters();
+        await this.loadData();
         this.bindEvents();
+        this.setupInitialMode();
         this.updateDisplay();
     }
 
+    setupInitialMode() {
+        document.body.className = 'trailer-mode';
+        this.trailerContainer.style.display = 'block';
+        this.lettersContainer.style.display = 'none';
+    }
+
     bindElements() {
-        this.letterCard = document.getElementById('letterCard');
+        // Trailer elements
+        this.trailerContainer = document.getElementById('trailerContainer');
+        this.trailerSlide = document.getElementById('trailerSlide');
+        this.introIcon = document.getElementById('introIcon');
+        this.introTitle = document.getElementById('introTitle');
+        this.introText = document.getElementById('introText');
+        this.trailerCurrentSlideSpan = document.getElementById('trailerCurrentSlide');
+        this.trailerTotalSlidesSpan = document.getElementById('trailerTotalSlides');
+        this.trailerProgressFill = document.getElementById('trailerProgressFill');
+        this.trailerPrevBtn = document.getElementById('trailerPrevBtn');
+        this.trailerNextBtn = document.getElementById('trailerNextBtn');
+        this.trailerTransitionButton = document.getElementById('trailerTransitionButton');
+        this.trailerInstructionText = document.getElementById('trailerInstructionText');
+
+        // Letter elements
+        this.lettersContainer = document.getElementById('lettersContainer');
+        this.lettersSlide = document.getElementById('lettersSlide');
         this.letterFrom = document.getElementById('letterFrom');
         this.letterMessage = document.getElementById('letterMessage');
-        this.currentLetterSpan = document.getElementById('currentLetter');
-        this.totalLettersSpan = document.getElementById('totalLetters');
+        this.currentSlideSpan = document.getElementById('currentSlide');
+        this.totalSlidesSpan = document.getElementById('totalSlides');
         this.progressFill = document.getElementById('progressFill');
         this.prevBtn = document.getElementById('prevBtn');
         this.nextBtn = document.getElementById('nextBtn');
+        this.instructionText = document.getElementById('instructionText');
+
+        // Shared elements
+        this.startLettersBtn = document.getElementById('startLettersBtn');
+        this.skipIntroBtn = document.getElementById('skipIntroBtn');
+        this.backToIntroBtn = document.getElementById('backToIntroBtn');
     }
 
-    async loadLetters() {
+    async loadData() {
+        // Load intro slides
         try {
-            // Try to load from letters.json file first
+            const introResponse = await fetch('intro.json');
+            if (introResponse.ok) {
+                this.introSlides = await introResponse.json();
+            } else {
+                throw new Error('Could not load intro.json');
+            }
+        } catch (error) {
+            console.log('Using default intro slides as intro.json not found');
+            this.introSlides = [
+                {
+                    "icon": "👋",
+                    "title": "A Farewell Tribute",
+                    "text": "We've gathered heartfelt messages from your colleagues to celebrate your incredible journey with us."
+                },
+                {
+                    "icon": "🌟",
+                    "title": "Your Impact",
+                    "text": "Your leadership, mentorship, and friendship have touched the lives of everyone around you."
+                },
+                {
+                    "icon": "🚀",
+                    "title": "New Adventures Await",
+                    "text": "As you embark on your next chapter, know that your legacy here will continue to inspire us all."
+                },
+                {
+                    "icon": "💝",
+                    "title": "From All of Us",
+                    "text": "These personal messages are a small token of our appreciation for everything you've given us."
+                }
+            ];
+        }
+
+        // Load letters
+        try {
             const response = await fetch('letters.json');
             if (response.ok) {
                 this.letters = await response.json();
@@ -39,7 +104,6 @@ class FarewellLetterViewer {
             }
         } catch (error) {
             console.log('Using sample data as letters.json not found');
-            // Fallback to sample data
             this.letters = [
                 {
                     "from": "John Doe",
@@ -66,20 +130,44 @@ class FarewellLetterViewer {
     }
 
     bindEvents() {
-        // Button navigation
+        // Trailer button navigation
+        this.trailerPrevBtn.addEventListener('click', () => this.goToPrevious());
+        this.trailerNextBtn.addEventListener('click', () => this.goToNext());
+
+        // Letter button navigation
         this.prevBtn.addEventListener('click', () => this.goToPrevious());
         this.nextBtn.addEventListener('click', () => this.goToNext());
 
-        // Touch events for swipe
-        this.letterCard.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
-        this.letterCard.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
-        this.letterCard.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: true });
+        // Start letters button
+        this.startLettersBtn.addEventListener('click', () => this.transitionToLetters());
 
-        // Mouse events for desktop swipe
-        this.letterCard.addEventListener('mousedown', (e) => this.handleMouseDown(e));
-        this.letterCard.addEventListener('mousemove', (e) => this.handleMouseMove(e));
-        this.letterCard.addEventListener('mouseup', (e) => this.handleMouseUp(e));
-        this.letterCard.addEventListener('mouseleave', (e) => this.handleMouseUp(e));
+        // Skip intro button
+        this.skipIntroBtn.addEventListener('click', () => this.transitionToLetters());
+
+        // Back to intro button
+        this.backToIntroBtn.addEventListener('click', () => this.transitionToIntro());
+
+        // Touch events for trailer swipe
+        this.trailerSlide.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
+        this.trailerSlide.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
+        this.trailerSlide.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: true });
+
+        // Mouse events for trailer desktop swipe
+        this.trailerSlide.addEventListener('mousedown', (e) => this.handleMouseDown(e));
+        this.trailerSlide.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+        this.trailerSlide.addEventListener('mouseup', (e) => this.handleMouseUp(e));
+        this.trailerSlide.addEventListener('mouseleave', (e) => this.handleMouseUp(e));
+
+        // Touch events for letter swipe
+        this.lettersSlide.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
+        this.lettersSlide.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
+        this.lettersSlide.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: true });
+
+        // Mouse events for letter desktop swipe
+        this.lettersSlide.addEventListener('mousedown', (e) => this.handleMouseDown(e));
+        this.lettersSlide.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+        this.lettersSlide.addEventListener('mouseup', (e) => this.handleMouseUp(e));
+        this.lettersSlide.addEventListener('mouseleave', (e) => this.handleMouseUp(e));
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
@@ -87,6 +175,8 @@ class FarewellLetterViewer {
                 this.goToPrevious();
             } else if (e.key === 'ArrowRight') {
                 this.goToNext();
+            } else if (e.key === 'Enter' && this.mode === 'intro' && this.isAtLastIntroSlide()) {
+                this.transitionToLetters();
             }
         });
     }
@@ -97,7 +187,9 @@ class FarewellLetterViewer {
         this.startX = e.touches[0].clientX;
         this.currentX = this.startX;
         this.isDragging = true;
-        this.letterCard.style.transition = 'none';
+
+        const activeElement = this.mode === 'intro' ? this.trailerSlide : this.lettersSlide;
+        activeElement.style.transition = 'none';
     }
 
     handleTouchMove(e) {
@@ -109,7 +201,8 @@ class FarewellLetterViewer {
 
         // Add resistance at boundaries
         const resistance = this.getResistance(deltaX);
-        this.letterCard.style.transform = `translateX(${deltaX * resistance}px)`;
+        const activeElement = this.mode === 'intro' ? this.trailerSlide : this.lettersSlide;
+        activeElement.style.transform = `translateX(${deltaX * resistance}px)`;
     }
 
     handleTouchEnd(e) {
@@ -119,7 +212,8 @@ class FarewellLetterViewer {
         const deltaX = this.currentX - this.startX;
         const threshold = 100; // Minimum distance to trigger swipe
 
-        this.letterCard.style.transition = 'transform 0.3s ease-in-out';
+        const activeElement = this.mode === 'intro' ? this.trailerSlide : this.lettersSlide;
+        activeElement.style.transition = 'transform 0.3s ease-in-out';
 
         if (Math.abs(deltaX) > threshold) {
             if (deltaX > 0) {
@@ -129,7 +223,7 @@ class FarewellLetterViewer {
             }
         } else {
             // Snap back to center
-            this.letterCard.style.transform = 'translateX(0)';
+            activeElement.style.transform = 'translateX(0)';
         }
     }
 
@@ -139,8 +233,10 @@ class FarewellLetterViewer {
         this.startX = e.clientX;
         this.currentX = this.startX;
         this.isDragging = true;
-        this.letterCard.style.transition = 'none';
-        this.letterCard.style.cursor = 'grabbing';
+
+        const activeElement = this.mode === 'intro' ? this.trailerSlide : this.lettersSlide;
+        activeElement.style.transition = 'none';
+        activeElement.style.cursor = 'grabbing';
     }
 
     handleMouseMove(e) {
@@ -150,7 +246,8 @@ class FarewellLetterViewer {
         const deltaX = this.currentX - this.startX;
 
         const resistance = this.getResistance(deltaX);
-        this.letterCard.style.transform = `translateX(${deltaX * resistance}px)`;
+        const activeElement = this.mode === 'intro' ? this.trailerSlide : this.lettersSlide;
+        activeElement.style.transform = `translateX(${deltaX * resistance}px)`;
     }
 
     handleMouseUp(e) {
@@ -160,8 +257,9 @@ class FarewellLetterViewer {
         const deltaX = this.currentX - this.startX;
         const threshold = 100;
 
-        this.letterCard.style.transition = 'transform 0.3s ease-in-out';
-        this.letterCard.style.cursor = 'grab';
+        const activeElement = this.mode === 'intro' ? this.trailerSlide : this.lettersSlide;
+        activeElement.style.transition = 'transform 0.3s ease-in-out';
+        activeElement.style.cursor = 'grab';
 
         if (Math.abs(deltaX) > threshold) {
             if (deltaX > 0) {
@@ -170,14 +268,15 @@ class FarewellLetterViewer {
                 this.goToNext();
             }
         } else {
-            this.letterCard.style.transform = 'translateX(0)';
+            activeElement.style.transform = 'translateX(0)';
         }
     }
 
     getResistance(deltaX) {
         const maxResistance = 0.3;
+        const totalItems = this.mode === 'intro' ? this.introSlides.length : this.letters.length;
         const isAtBoundary = (deltaX > 0 && this.currentIndex === 0) ||
-                            (deltaX < 0 && this.currentIndex === this.letters.length - 1);
+                            (deltaX < 0 && this.currentIndex === totalItems - 1);
 
         return isAtBoundary ? maxResistance : 1;
     }
@@ -190,7 +289,8 @@ class FarewellLetterViewer {
     }
 
     goToNext() {
-        if (this.currentIndex < this.letters.length - 1 && !this.isAnimating) {
+        const totalItems = this.mode === 'intro' ? this.introSlides.length : this.letters.length;
+        if (this.currentIndex < totalItems - 1 && !this.isAnimating) {
             this.currentIndex++;
             this.animateTransition('left');
         }
@@ -199,63 +299,165 @@ class FarewellLetterViewer {
     animateTransition(direction) {
         this.isAnimating = true;
 
-        // Slide out current letter
-        this.letterCard.style.transform = direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+        const activeElement = this.mode === 'intro' ? this.trailerSlide : this.lettersSlide;
+
+        // Slide out current slide
+        activeElement.style.transform = direction === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
 
         setTimeout(() => {
             // Update content and display
             this.updateDisplay();
 
             // Position for slide in
-            this.letterCard.style.transition = 'none';
-            this.letterCard.style.transform = direction === 'left' ? 'translateX(100%)' : 'translateX(-100%)';
+            activeElement.style.transition = 'none';
+            activeElement.style.transform = direction === 'left' ? 'translateX(100%)' : 'translateX(-100%)';
 
             // Trigger slide in animation
             setTimeout(() => {
-                this.letterCard.style.transition = 'transform 0.3s ease-in-out';
-                this.letterCard.style.transform = 'translateX(0)';
+                activeElement.style.transition = 'transform 0.8s ease-in-out';
+                activeElement.style.transform = 'translateX(0)';
 
                 setTimeout(() => {
                     this.isAnimating = false;
-                }, 300);
+                }, this.mode === 'intro' ? 800 : 300);
             }, 50);
 
-        }, 300);
+        }, this.mode === 'intro' ? 800 : 300);
+    }
+
+    updateIntroContent() {
+        const slide = this.introSlides[this.currentIndex];
+        this.introIcon.textContent = slide.icon;
+        this.introTitle.textContent = slide.title;
+        this.introText.textContent = slide.text;
     }
 
     updateLetterContent() {
         const letter = this.letters[this.currentIndex];
-        this.letterFrom.textContent = `From: ${letter.from}`;
+
+        // Set letter content
+        this.letterFrom.textContent = letter.from;
         this.letterMessage.textContent = letter.message;
     }
 
+    isAtLastIntroSlide() {
+        return this.mode === 'intro' && this.currentIndex === this.introSlides.length - 1;
+    }
+
     updateDisplay() {
-        if (this.letters.length === 0) return;
+        if (this.mode === 'intro') {
+            this.updateIntroContent();
+            this.trailerCurrentSlideSpan.textContent = this.currentIndex + 1;
+            this.trailerTotalSlidesSpan.textContent = this.introSlides.length;
 
-        this.updateLetterContent();
-        this.currentLetterSpan.textContent = this.currentIndex + 1;
-        this.totalLettersSpan.textContent = this.letters.length;
+            // Update progress bar
+            const progress = ((this.currentIndex + 1) / this.introSlides.length) * 100;
+            this.trailerProgressFill.style.width = `${progress}%`;
 
-        // Update progress bar
-        const progress = ((this.currentIndex + 1) / this.letters.length) * 100;
-        this.progressFill.style.width = `${progress}%`;
+            // Update navigation buttons
+            this.trailerPrevBtn.disabled = this.currentIndex === 0;
+            this.trailerNextBtn.disabled = this.currentIndex === this.introSlides.length - 1;
 
-        // Update navigation buttons
-        this.prevBtn.disabled = this.currentIndex === 0;
-        this.nextBtn.disabled = this.currentIndex === this.letters.length - 1;
+            // Show/hide transition button
+            this.trailerTransitionButton.style.display = this.isAtLastIntroSlide() ? 'block' : 'none';
+            this.trailerInstructionText.textContent = this.isAtLastIntroSlide() ?
+                'Click the button below to start reading the farewell letters' :
+                'Swipe left or right to navigate';
+
+        } else if (this.mode === 'letters') {
+            this.updateLetterContent();
+            this.currentSlideSpan.textContent = this.currentIndex + 1;
+            this.totalSlidesSpan.textContent = this.letters.length;
+
+            // Update progress bar
+            const progress = ((this.currentIndex + 1) / this.letters.length) * 100;
+            this.progressFill.style.width = `${progress}%`;
+
+            // Update navigation buttons
+            this.prevBtn.disabled = this.currentIndex === 0;
+            this.nextBtn.disabled = this.currentIndex === this.letters.length - 1;
+
+            // Update instruction text
+            this.instructionText.textContent = 'Swipe left or right to navigate between letters';
+        }
+    }
+
+    transitionToLetters() {
+        // Create a fade transition effect
+        this.trailerContainer.style.transition = 'opacity 0.8s ease-out';
+        this.trailerContainer.style.opacity = '0';
+
+        setTimeout(() => {
+            // Switch modes
+            this.mode = 'letters';
+            this.currentIndex = 0;
+
+            // Hide trailer and show letters container
+            this.trailerContainer.style.display = 'none';
+            this.lettersContainer.style.display = 'block';
+
+            // Update body class for styling
+            document.body.className = 'letter-mode';
+
+            // Reset trailer opacity for future use
+            this.trailerContainer.style.opacity = '1';
+
+            // Update display
+            this.updateDisplay();
+
+        }, 800);
+    }
+
+    transitionToIntro() {
+        // Create a fade transition effect
+        this.lettersContainer.style.transition = 'opacity 0.8s ease-out';
+        this.lettersContainer.style.opacity = '0';
+
+        setTimeout(() => {
+            // Switch modes
+            this.mode = 'intro';
+            this.currentIndex = 0;
+
+            // Hide letters and show trailer container
+            this.lettersContainer.style.display = 'none';
+            this.trailerContainer.style.display = 'block';
+
+            // Update body class for styling
+            document.body.className = 'trailer-mode';
+
+            // Reset letters opacity for future use
+            this.lettersContainer.style.opacity = '1';
+
+            // Update display
+            this.updateDisplay();
+
+        }, 800);
     }
 
     // Public method to add letters dynamically
     addLetter(letter) {
         this.letters.push(letter);
-        this.updateDisplay();
+        if (this.mode === 'letters') {
+            this.updateDisplay();
+        }
     }
 
     // Public method to load custom letters
     loadCustomLetters(letters) {
         this.letters = letters;
-        this.currentIndex = 0;
-        this.updateDisplay();
+        if (this.mode === 'letters') {
+            this.currentIndex = 0;
+            this.updateDisplay();
+        }
+    }
+
+    // Public method to load custom intro slides
+    loadCustomIntroSlides(slides) {
+        this.introSlides = slides;
+        if (this.mode === 'intro') {
+            this.currentIndex = 0;
+            this.updateDisplay();
+        }
     }
 }
 

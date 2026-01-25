@@ -7,41 +7,95 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Farewell Messages</h1>
-            <p>Thank you for all the wonderful memories</p>
-        </header>
+    <!-- Trailer Mode - Full Screen Intro -->
+    <div class="trailer-container" id="trailerContainer">
+        <div class="trailer-background"></div>
+        <div class="trailer-content">
+            <div class="trailer-slide" id="trailerSlide">
+                <div class="intro-icon" id="introIcon">✨</div>
+                <div class="intro-title" id="introTitle">Loading...</div>
+                <div class="intro-text" id="introText">Loading introduction...</div>
+            </div>
+        </div>
 
-        <div class="letter-viewer">
-            <div class="letter-container" id="letterContainer">
-                <div class="letter-card" id="letterCard">
-                    <div class="letter-content">
-                        <div class="letter-from" id="letterFrom">Loading...</div>
+        <div class="trailer-navigation">
+            <button class="trailer-nav-btn" id="trailerPrevBtn" aria-label="Previous">
+                <span>‹</span>
+            </button>
+            <div class="trailer-counter">
+                <span id="trailerCurrentSlide">1</span> / <span id="trailerTotalSlides">0</span>
+            </div>
+            <button class="trailer-nav-btn" id="trailerNextBtn" aria-label="Next">
+                <span>›</span>
+            </button>
+        </div>
+
+        <div class="trailer-progress-bar">
+            <div class="trailer-progress-fill" id="trailerProgressFill"></div>
+        </div>
+
+        <div class="trailer-transition-button" id="trailerTransitionButton" style="display: none;">
+            <button class="start-letters-btn" id="startLettersBtn">
+                Start Reading Letters →
+            </button>
+        </div>
+
+        <div class="skip-intro-button">
+            <button class="skip-intro-btn" id="skipIntroBtn">
+                Skip Introduction
+            </button>
+        </div>
+
+        <div class="trailer-instructions">
+            <p id="trailerInstructionText">Swipe left or right to navigate</p>
+        </div>
+    </div>
+
+    <!-- Letters Mode - Full Screen Letter Viewer -->
+    <div class="letters-container" id="lettersContainer" style="display: none;">
+        <div class="letters-background"></div>
+        <div class="letters-content">
+            <div class="letters-slide" id="lettersSlide">
+                <div class="letter-paper">
+                    <div class="letter-body">
+                        <div class="letter-greeting">Dear Friend,</div>
                         <div class="letter-message" id="letterMessage">Loading messages...</div>
+                    </div>
+
+                    <div class="letter-footer">
+                        <div class="letter-closing">With warm regards,</div>
+                        <div class="letter-signature">
+                            <div class="letter-from" id="letterFrom">Loading...</div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="navigation">
-                <button class="nav-btn" id="prevBtn" aria-label="Previous letter">
-                    <span>‹</span>
-                </button>
-                <div class="letter-counter">
-                    <span id="currentLetter">1</span> / <span id="totalLetters">0</span>
-                </div>
-                <button class="nav-btn" id="nextBtn" aria-label="Next letter">
-                    <span>›</span>
-                </button>
+        <div class="letters-navigation">
+            <button class="letters-nav-btn" id="prevBtn" aria-label="Previous">
+                <span>‹</span>
+            </button>
+            <div class="letters-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">0</span>
             </div>
+            <button class="letters-nav-btn" id="nextBtn" aria-label="Next">
+                <span>›</span>
+            </button>
+        </div>
 
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
+        <div class="letters-progress-bar">
+            <div class="letters-progress-fill" id="progressFill"></div>
+        </div>
 
-            <div class="instructions">
-                <p>Swipe left or right to navigate between letters</p>
-            </div>
+        <div class="back-to-intro-button">
+            <button class="back-intro-btn" id="backToIntroBtn">
+                ← Back to Introduction
+            </button>
+        </div>
+
+        <div class="letters-instructions">
+            <p id="instructionText">Swipe left or right to navigate between letters</p>
         </div>
     </div>
 
