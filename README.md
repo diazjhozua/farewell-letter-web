@@ -4,9 +4,10 @@ A responsive web application to showcase farewell letters with swipe navigation 
 
 ## Features
 
+- **Multiple Themes**: 5 beautiful themes (Default, Tech, Business, Girly, Futuristic)
 - **Cinematic Introduction**: Full-screen trailer experience with beautiful animations
 - **Letter Format Design**: Letters displayed in authentic letter layout with paper-like styling
-- **Consistent Color Theme**: Same cinematic background with traditional letter paper overlay
+- **Theme Consistency**: Backgrounds, colors, and UI elements match throughout each theme
 - **Skip/Back Navigation**: Skip intro or return to introduction at any time
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
 - **Swipe Navigation**: Touch/mouse swipe left or right to navigate between slides/letters
@@ -42,6 +43,54 @@ A responsive web application to showcase farewell letters with swipe navigation 
 4. **Customize Content**:
    - Edit `intro.json` with your custom introduction slides
    - Edit `letters.json` with your actual farewell letters
+
+## Theme System
+
+The application includes 5 beautiful themes that can be changed by modifying the code:
+
+### Available Themes
+
+1. **Default** (`'default'`) - Blue/purple elegant cinematic theme
+   - Elegant blue gradients with sophisticated styling
+   - Perfect for formal farewell presentations
+
+2. **Tech/Programmer** (`'tech'`) - Dark green terminal theme
+   - Dark background with green terminal-style text
+   - Monospace fonts and hacker aesthetic
+   - Great for farewell letters in tech companies
+
+3. **Business** (`'business'`) - Professional navy corporate theme
+   - Clean, professional navy and white styling
+   - Corporate fonts and formal presentation
+   - Ideal for business environments
+
+4. **Girly** (`'girly'`) - Pink/purple feminine theme
+   - Soft pink gradients with elegant curves
+   - Feminine styling with beautiful typography
+   - Perfect for more personal, warm farewells
+
+5. **Futuristic** (`'futuristic'`) - Cyan/neon sci-fi theme
+   - Dark background with neon cyan and magenta accents
+   - Sci-fi fonts with glowing effects
+   - Great for creative/design teams
+
+### Changing Themes
+
+To switch themes, edit the `script.js` file and change the `currentTheme` value:
+
+```javascript
+// In script.js, around line 20:
+this.currentTheme = 'tech'; // Change 'default' to any theme name
+```
+
+**Available theme options:**
+- `'default'`
+- `'tech'`
+- `'business'`
+- `'girly'`
+- `'futuristic'`
+
+**Note:** Theme selection is intentionally code-only and not exposed to end users.
 
 ## JSON Data Format
 
@@ -110,16 +159,17 @@ The design uses a purple gradient theme. You can customize:
 
 ## Technical Features
 
-- Dual-mode architecture (trailer and letters modes)
-- Touch event handling for mobile swipe gestures across both modes
-- Mouse event handling for desktop drag navigation
-- Resistance at boundaries (prevents over-swiping)
-- Cinematic CSS transitions with shimmer effects
-- Skip/back navigation between modes
-- Mode-specific styling and animations
-- Responsive breakpoints for different screen sizes
-- Glass-morphism UI elements with backdrop blur
-- Fade transitions between intro and letters modes
+- **Theme System**: 5 complete visual themes with unified styling
+- **Dual-mode architecture**: Trailer and letters modes with seamless transitions
+- **Touch event handling**: Mobile swipe gestures across both modes
+- **Mouse event handling**: Desktop drag navigation with resistance
+- **Resistance at boundaries**: Prevents over-swiping at first/last items
+- **Cinematic CSS transitions**: Shimmer effects and smooth animations
+- **Skip/back navigation**: Flexible mode switching
+- **Theme-specific styling**: Each theme has custom colors, fonts, and effects
+- **Responsive design**: Breakpoints for different screen sizes
+- **Glass-morphism UI**: Backdrop blur effects throughout
+- **Code-only theme switching**: Theme selection hidden from end users
 
 ## Future Enhancements
 
