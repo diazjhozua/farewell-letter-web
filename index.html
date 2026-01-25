@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Letters</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Farewell Messages</h1>
+            <p>Thank you for all the wonderful memories</p>
+        </header>
+
+        <div class="letter-viewer">
+            <div class="letter-container" id="letterContainer">
+                <div class="letter-card" id="letterCard">
+                    <div class="letter-content">
+                        <div class="letter-from" id="letterFrom">Loading...</div>
+                        <div class="letter-message" id="letterMessage">Loading messages...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn" aria-label="Previous letter">
+                    <span>‹</span>
+                </button>
+                <div class="letter-counter">
+                    <span id="currentLetter">1</span> / <span id="totalLetters">0</span>
+                </div>
+                <button class="nav-btn" id="nextBtn" aria-label="Next letter">
+                    <span>›</span>
+                </button>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="instructions">
+                <p>Swipe left or right to navigate between letters</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
