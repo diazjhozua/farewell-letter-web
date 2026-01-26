@@ -1,0 +1,434 @@
+/* ================================
+   THEME SYSTEM
+   ================================ */
+
+/* DEFAULT THEME (Blue/Purple Elegant) */
+.theme-default .trailer-background {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+    opacity: 0.95;
+}
+
+.theme-default .letters-background {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+    opacity: 0.95;
+}
+
+.theme-default .letter-paper {
+    background: linear-gradient(145deg, rgba(255, 253, 250, 0.98), rgba(250, 248, 245, 0.95));
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4),
+        0 15px 35px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    color: #2c1810;
+}
+
+.theme-default .letter-paper:hover {
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.theme-default .letter-from {
+    color: #1e3c72;
+    text-shadow: 0 2px 8px rgba(30, 60, 114, 0.3);
+    font-family: 'Brush Script MT', cursive, Georgia, serif;
+}
+
+.theme-default .letter-from:hover {
+    color: #2a5298;
+    text-shadow: 0 4px 12px rgba(42, 82, 152, 0.4);
+}
+
+.theme-default .letter-from::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(30, 60, 114, 0.2),
+        rgba(30, 60, 114, 0.6),
+        rgba(42, 82, 152, 0.8),
+        rgba(30, 60, 114, 0.6),
+        rgba(30, 60, 114, 0.2),
+        transparent
+    );
+}
+
+.theme-default .letter-message {
+    color: #3e2723;
+}
+
+.theme-default .letter-greeting,
+.theme-default .letter-closing {
+    color: #5d4037;
+}
+
+.theme-default .letters-progress-fill {
+    background: linear-gradient(90deg, rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.9));
+}
+
+.theme-default .trailer-progress-fill {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1));
+}
+
+/* TECH/PROGRAMMER THEME */
+.theme-tech .trailer-background {
+    background: linear-gradient(135deg, #0d1117 0%, #21262d 50%, #161b22 100%);
+    opacity: 0.98;
+}
+
+.theme-tech .letters-background {
+    background: linear-gradient(135deg, #0d1117 0%, #21262d 50%, #161b22 100%);
+    opacity: 0.98;
+}
+
+.theme-tech .intro-title,
+.theme-tech .trailer-counter,
+.theme-tech .letters-counter,
+.theme-tech .trailer-nav-btn,
+.theme-tech .letters-nav-btn {
+    font-family: 'Courier New', 'Monaco', monospace;
+}
+
+.theme-tech .letter-paper {
+    background: linear-gradient(145deg, rgba(13, 17, 23, 0.95), rgba(33, 38, 45, 0.92));
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+    color: #c9d1d9;
+}
+
+.theme-tech .letter-paper:hover {
+    box-shadow: 0 0 40px rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.theme-tech .letter-from {
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    font-weight: 700;
+}
+
+.theme-tech .letter-from:hover {
+    color: #39ff14;
+    text-shadow: 0 0 15px rgba(57, 255, 20, 0.7);
+}
+
+.theme-tech .letter-from::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 255, 0, 0.3),
+        rgba(0, 255, 0, 0.8),
+        rgba(57, 255, 20, 1),
+        rgba(0, 255, 0, 0.8),
+        rgba(0, 255, 0, 0.3),
+        transparent
+    );
+}
+
+.theme-tech .letter-message {
+    color: #c9d1d9;
+    font-family: 'Courier New', monospace;
+}
+
+.theme-tech .letter-greeting,
+.theme-tech .letter-closing {
+    color: #58a6ff;
+}
+
+.theme-tech .letters-progress-fill {
+    background: linear-gradient(90deg, rgba(0, 255, 0, 0.6), rgba(57, 255, 20, 0.9));
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.theme-tech .trailer-progress-fill {
+    background: linear-gradient(90deg, rgba(0, 255, 0, 0.6), rgba(57, 255, 20, 0.9));
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.theme-tech .trailer-nav-btn,
+.theme-tech .letters-nav-btn {
+    border-color: rgba(0, 255, 0, 0.6);
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.theme-tech .trailer-nav-btn:hover,
+.theme-tech .letters-nav-btn:hover {
+    border-color: #00ff00;
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+/* BUSINESS THEME */
+.theme-business .trailer-background {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #3182ce 100%);
+    opacity: 0.96;
+}
+
+.theme-business .letters-background {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #3182ce 100%);
+    opacity: 0.96;
+}
+
+.theme-business .letter-paper {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+    border: 2px solid rgba(49, 130, 206, 0.1);
+    box-shadow: 0 20px 60px rgba(26, 54, 93, 0.15);
+    color: #1a202c;
+}
+
+.theme-business .letter-paper:hover {
+    box-shadow: 0 25px 70px rgba(26, 54, 93, 0.2);
+    border-color: rgba(49, 130, 206, 0.2);
+}
+
+.theme-business .letter-from {
+    color: #1a365d;
+    font-family: 'Times New Roman', serif;
+    font-weight: 600;
+    text-shadow: none;
+}
+
+.theme-business .letter-from:hover {
+    color: #2c5282;
+}
+
+.theme-business .letter-from::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(26, 54, 93, 0.3),
+        rgba(26, 54, 93, 0.7),
+        rgba(44, 82, 130, 0.9),
+        rgba(26, 54, 93, 0.7),
+        rgba(26, 54, 93, 0.3),
+        transparent
+    );
+}
+
+.theme-business .intro-title {
+    font-family: 'Times New Roman', serif;
+    font-weight: 400;
+}
+
+.theme-business .letter-message {
+    font-family: 'Times New Roman', serif;
+    color: #1a202c;
+}
+
+.theme-business .letter-greeting,
+.theme-business .letter-closing {
+    color: #2c5282;
+    font-weight: 600;
+}
+
+.theme-business .letters-progress-fill {
+    background: linear-gradient(90deg, rgba(26, 54, 93, 0.8), rgba(44, 82, 130, 0.9));
+}
+
+.theme-business .trailer-progress-fill {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1));
+}
+
+.theme-business .trailer-nav-btn,
+.theme-business .letters-nav-btn {
+    border-color: rgba(26, 54, 93, 0.6);
+    background: rgba(26, 54, 93, 0.1);
+}
+
+.theme-business .trailer-nav-btn:hover,
+.theme-business .letters-nav-btn:hover {
+    border-color: #1a365d;
+    background: rgba(26, 54, 93, 0.2);
+}
+
+/* GIRLY THEME */
+.theme-girly .trailer-background {
+    background: linear-gradient(135deg, #ec4899 0%, #be185d 50%, #f472b6 100%);
+    opacity: 0.93;
+}
+
+.theme-girly .letters-background {
+    background: linear-gradient(135deg, #ec4899 0%, #be185d 50%, #f472b6 100%);
+    opacity: 0.93;
+}
+
+.theme-girly .letter-paper {
+    background: linear-gradient(145deg, rgba(255, 242, 249, 0.97), rgba(253, 230, 245, 0.94));
+    border: 2px solid rgba(236, 72, 153, 0.2);
+    box-shadow: 0 25px 70px rgba(236, 72, 153, 0.2);
+    border-radius: 20px;
+    color: #831843;
+}
+
+.theme-girly .letter-paper:hover {
+    box-shadow: 0 30px 80px rgba(236, 72, 153, 0.25);
+    border-color: rgba(236, 72, 153, 0.3);
+}
+
+.theme-girly .letter-from {
+    color: #be185d;
+    font-family: 'Brush Script MT', cursive;
+    text-shadow: 0 2px 10px rgba(190, 24, 93, 0.3);
+}
+
+.theme-girly .letter-from:hover {
+    color: #ec4899;
+    text-shadow: 0 4px 15px rgba(236, 72, 153, 0.5);
+}
+
+.theme-girly .letter-from::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(236, 72, 153, 0.3),
+        rgba(236, 72, 153, 0.7),
+        rgba(190, 24, 93, 0.9),
+        rgba(236, 72, 153, 0.7),
+        rgba(236, 72, 153, 0.3),
+        transparent
+    );
+}
+
+.theme-girly .intro-title {
+    font-family: 'Brush Script MT', cursive;
+}
+
+.theme-girly .letter-message {
+    color: #831843;
+    font-family: 'Georgia', serif;
+}
+
+.theme-girly .letter-greeting,
+.theme-girly .letter-closing {
+    color: #be185d;
+    font-style: italic;
+}
+
+.theme-girly .letters-progress-fill {
+    background: linear-gradient(90deg, rgba(236, 72, 153, 0.8), rgba(190, 24, 93, 0.9));
+}
+
+.theme-girly .trailer-progress-fill {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1));
+}
+
+.theme-girly .trailer-nav-btn,
+.theme-girly .letters-nav-btn {
+    border-color: rgba(236, 72, 153, 0.6);
+    background: rgba(236, 72, 153, 0.1);
+}
+
+.theme-girly .trailer-nav-btn:hover,
+.theme-girly .letters-nav-btn:hover {
+    border-color: #ec4899;
+    background: rgba(236, 72, 153, 0.2);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+/* FUTURISTIC THEME */
+.theme-futuristic .trailer-background {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    opacity: 0.97;
+}
+
+.theme-futuristic .letters-background {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    opacity: 0.97;
+}
+
+.theme-futuristic .letter-paper {
+    background: linear-gradient(145deg, rgba(15, 15, 35, 0.95), rgba(26, 26, 46, 0.92));
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow:
+        0 0 40px rgba(0, 255, 255, 0.2),
+        inset 0 0 20px rgba(0, 255, 255, 0.05);
+    border-radius: 10px;
+    color: #a0a9c0;
+}
+
+.theme-futuristic .letter-paper:hover {
+    box-shadow:
+        0 0 50px rgba(0, 255, 255, 0.3),
+        0 0 25px rgba(255, 0, 255, 0.1),
+        inset 0 0 25px rgba(0, 255, 255, 0.08);
+    border-color: rgba(0, 255, 255, 0.5);
+}
+
+.theme-futuristic .letter-from {
+    color: #00ffff;
+    font-family: 'Orbitron', 'Arial Black', sans-serif;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.theme-futuristic .letter-from:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 20px rgba(255, 0, 255, 0.9);
+}
+
+.theme-futuristic .letter-from::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 255, 255, 0.4),
+        rgba(0, 255, 255, 0.8),
+        rgba(255, 0, 255, 1),
+        rgba(0, 255, 255, 0.8),
+        rgba(0, 255, 255, 0.4),
+        transparent
+    );
+    height: 2px;
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        opacity: 0.7;
+        box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+}
+
+.theme-futuristic .intro-title {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.theme-futuristic .letter-message {
+    color: #a0a9c0;
+    font-family: 'Arial', sans-serif;
+}
+
+.theme-futuristic .letter-greeting,
+.theme-futuristic .letter-closing {
+    color: #00ffff;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+}
+
+.theme-futuristic .letters-progress-fill {
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.9));
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.theme-futuristic .trailer-progress-fill {
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.6), rgba(255, 0, 255, 0.9));
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.theme-futuristic .trailer-nav-btn,
+.theme-futuristic .letters-nav-btn {
+    border-color: rgba(0, 255, 255, 0.6);
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.theme-futuristic .trailer-nav-btn:hover,
+.theme-futuristic .letters-nav-btn:hover {
+    border-color: #00ffff;
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+}

@@ -1,0 +1,228 @@
+/* Responsive Trailer Styles */
+@media (max-width: 768px) {
+    .trailer-content {
+        padding: 20px;
+    }
+
+    .intro-icon {
+        font-size: 4rem;
+        margin-bottom: 20px;
+    }
+
+    .intro-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .trailer-navigation {
+        bottom: 100px;
+        gap: 20px;
+    }
+
+    .trailer-nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .trailer-counter {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .trailer-progress-bar {
+        width: 250px;
+        bottom: 70px;
+    }
+
+    .trailer-transition-button {
+        bottom: 30px;
+    }
+
+    .start-letters-btn {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .intro-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    .intro-text {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .trailer-navigation {
+        bottom: 80px;
+        gap: 15px;
+    }
+
+    .trailer-nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .trailer-counter {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .trailer-progress-bar {
+        width: 200px;
+        bottom: 60px;
+    }
+
+    .trailer-transition-button {
+        bottom: 25px;
+    }
+
+    .start-letters-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive Letters Styles */
+@media (max-width: 768px) {
+    .letters-content {
+        padding: 20px;
+        min-height: 70vh;
+    }
+
+    .letter-paper {
+        padding: 40px 30px;
+        margin: 20px;
+    }
+
+    .letter-greeting {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .letter-message {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-indent: 20px;
+    }
+
+    .letter-from {
+        font-size: 1.6rem;
+    }
+
+    .letters-navigation {
+        bottom: 100px;
+        gap: 20px;
+    }
+
+    .letters-nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .letters-counter {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .letters-progress-bar {
+        width: 250px;
+        bottom: 70px;
+    }
+
+    .back-to-intro-button {
+        top: 20px;
+        left: 20px;
+    }
+
+    .skip-intro-button {
+        top: 20px;
+        right: 20px;
+    }
+
+    .back-intro-btn,
+    .skip-intro-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .letters-content {
+        padding: 10px;
+        min-height: 65vh;
+    }
+
+    .letter-paper {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+
+    .letter-greeting {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .letter-message {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        text-indent: 15px;
+    }
+
+    .letter-footer {
+        margin-top: 20px;
+    }
+
+    .letter-closing {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .letter-from {
+        font-size: 1.4rem;
+    }
+
+    .letters-navigation {
+        bottom: 80px;
+        gap: 15px;
+    }
+
+    .letters-nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .letters-counter {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .letters-progress-bar {
+        width: 200px;
+        bottom: 60px;
+    }
+
+    .back-intro-btn,
+    .skip-intro-btn {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+    }
+}

@@ -1,0 +1,534 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body.trailer-mode,
+body.letter-mode {
+    background: #000;
+    overflow: hidden;
+}
+
+/* Trailer Mode Base Styles */
+.trailer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.trailer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    /* Background set by theme classes */
+}
+
+.trailer-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(120, 120, 120, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    animation: shimmer 8s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.trailer-content {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 40px;
+    z-index: 10;
+}
+
+.trailer-slide {
+    transition: all 0.8s ease-in-out;
+    padding: 20px;
+}
+
+/* Trailer Content Base Styling */
+.intro-icon {
+    font-size: 6rem;
+    margin-bottom: 30px;
+    display: block;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.intro-title {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    line-height: 1.2;
+}
+
+.intro-text {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-weight: 300;
+}
+
+/* Trailer Navigation */
+.trailer-navigation {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.trailer-nav-btn {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.trailer-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.trailer-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.trailer-counter {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Skip Intro Button */
+.skip-intro-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.skip-intro-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.skip-intro-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Trailer Progress Bar */
+.trailer-progress-bar {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.trailer-progress-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Trailer Transition Button */
+.trailer-transition-button {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.start-letters-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3));
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.start-letters-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.4));
+    border-color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Trailer Instructions */
+.trailer-instructions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Letters Mode Base Styles */
+.letters-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.letters-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    /* Background set by theme classes */
+}
+
+.letters-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 30% 70%, rgba(120, 120, 120, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    animation: shimmer 8s ease-in-out infinite alternate;
+}
+
+.letters-content {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    z-index: 10;
+    min-height: 80vh;
+}
+
+.letters-slide {
+    transition: all 0.8s ease-in-out;
+    width: 100%;
+}
+
+/* Letter Paper Base Styling */
+.letter-paper {
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 60px 50px;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    transform: perspective(1000px) rotateX(2deg);
+    transition: all 0.3s ease;
+    /* Background, colors, and shadows set by theme classes */
+}
+
+.letter-paper:hover {
+    transform: perspective(1000px) rotateX(0deg);
+    /* Shadows set by theme classes */
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(90deg, transparent 70px, rgba(220, 180, 140, 0.1) 72px, transparent 74px),
+        linear-gradient(0deg, transparent, rgba(220, 180, 140, 0.05) 50%, transparent);
+    pointer-events: none;
+    border-radius: 12px;
+}
+
+/* Letter Body Base */
+.letter-body {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.letter-greeting {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.letter-message {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    max-width: 580px;
+    margin: 0 auto 20px auto;
+}
+
+/* Letter Footer Base */
+.letter-footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.letter-closing {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.letter-signature {
+    position: relative;
+}
+
+.letter-from {
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    font-family: 'Brush Script MT', cursive, Georgia, serif;
+    transform: rotate(-1deg);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    /* Color and text-shadow set by theme classes */
+}
+
+.letter-from:hover {
+    transform: rotate(0deg) scale(1.08);
+    /* Color and text-shadow set by theme classes */
+}
+
+.letter-from::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: -15px;
+    right: -15px;
+    height: 3px;
+    border-radius: 2px;
+    animation: signaturePulse 3s ease-in-out infinite;
+    /* Background set by theme classes */
+}
+
+@keyframes signaturePulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scaleX(0.95);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleX(1.05);
+    }
+}
+
+/* Letters Navigation */
+.letters-navigation {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.letters-nav-btn {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.letters-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.letters-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.letters-counter {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Letters Progress Bar */
+.letters-progress-bar {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.letters-progress-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Back to Intro Button */
+.back-to-intro-button {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.back-intro-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.back-intro-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Letters Instructions */
+.letters-instructions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Animation classes for swipe transitions */
+.slide-left {
+    transform: translateX(-100%);
+}
+
+.slide-right {
+    transform: translateX(100%);
+}
+
+.slide-center {
+    transform: translateX(0);
+}

@@ -20,11 +20,27 @@ A responsive web application to showcase farewell letters with swipe navigation 
 
 ## Files Structure
 
+### Core Files
 - `index.html` - Main HTML structure
-- `styles.css` - CSS styling and responsive design
-- `script.js` - JavaScript functionality for navigation and swipe detection
+
+### JavaScript Modules (js/)
+- `js/app.js` - Main application entry point
+- `js/farewellViewer.js` - Core application class
+- `js/themeManager.js` - Theme management system
+- `js/gestureHandler.js` - Touch and mouse gesture handling
+- `js/dataLoader.js` - Data loading and management
+- `js/config.js` - Configuration constants and default data
+
+### Stylesheets (css/)
+- `css/base.css` - Core styling and layout
+- `css/themes.css` - Theme-specific styling
+- `css/responsive.css` - Responsive design rules
+
+### Data Files
 - `intro.json` - JSON data file containing the introductory slides
 - `letters.json` - JSON data file containing the farewell letters
+
+### Documentation
 - `README.md` - This documentation file
 
 ## How to Use
@@ -76,10 +92,27 @@ The application includes 5 beautiful themes that can be changed by modifying the
 
 ### Changing Themes
 
-To switch themes, edit the `script.js` file and change the `currentTheme` value:
+**Method 1: Edit the main app file**
+Edit `js/app.js` and uncomment one of the theme lines:
 
 ```javascript
-// In script.js, around line 20:
+// In js/app.js:
+document.addEventListener('DOMContentLoaded', () => {
+    window.farewellViewer = new FarewellLetterViewer();
+
+    // Uncomment to change theme:
+    // window.farewellViewer.setTheme('tech');
+    window.farewellViewer.setTheme('business'); // Uncomment this line
+    // window.farewellViewer.setTheme('girly');
+    // window.farewellViewer.setTheme('futuristic');
+});
+```
+
+**Method 2: Edit the theme manager**
+Edit `js/themeManager.js` and change the default theme:
+
+```javascript
+// In js/themeManager.js, around line 7:
 this.currentTheme = 'tech'; // Change 'default' to any theme name
 ```
 
@@ -159,17 +192,80 @@ The design uses a purple gradient theme. You can customize:
 
 ## Technical Features
 
+### Core Architecture
+- **Modular ES6 Design**: Clean separation of concerns across multiple modules
 - **Theme System**: 5 complete visual themes with unified styling
 - **Dual-mode architecture**: Trailer and letters modes with seamless transitions
+
+### Interaction Features
 - **Touch event handling**: Mobile swipe gestures across both modes
 - **Mouse event handling**: Desktop drag navigation with resistance
 - **Resistance at boundaries**: Prevents over-swiping at first/last items
+- **Keyboard navigation**: Arrow keys and Enter key support
+
+### Visual Features
 - **Cinematic CSS transitions**: Shimmer effects and smooth animations
-- **Skip/back navigation**: Flexible mode switching
 - **Theme-specific styling**: Each theme has custom colors, fonts, and effects
 - **Responsive design**: Breakpoints for different screen sizes
 - **Glass-morphism UI**: Backdrop blur effects throughout
+- **3D paper effects**: Realistic letter paper with perspective transforms
+
+### Developer Features
+- **Modular JavaScript**: Easy to maintain and extend
+- **Separated concerns**: Gesture handling, theme management, data loading
+- **Configuration-driven**: Easy theme switching and customization
 - **Code-only theme switching**: Theme selection hidden from end users
+
+## Modular Architecture
+
+The application uses a clean, modular ES6 architecture:
+
+### JavaScript Modules
+- **`app.js`**: Application entry point and initialization
+- **`farewellViewer.js`**: Main application logic and coordination
+- **`themeManager.js`**: Theme switching and management
+- **`gestureHandler.js`**: Touch and mouse interaction handling
+- **`dataLoader.js`**: JSON data loading with fallbacks
+- **`config.js`**: Configuration constants and default data
+
+### CSS Modules
+- **`base.css`**: Core layout and component styling
+- **`themes.css`**: All theme-specific visual styles
+- **`responsive.css`**: Media queries and responsive behavior
+
+This modular approach provides:
+- **Better maintainability**: Easy to find and modify specific functionality
+- **Separation of concerns**: Each module has a single responsibility
+- **Reusability**: Components can be easily reused or extended
+- **Testing**: Individual modules can be tested in isolation
+
+## Extending the Application
+
+### Adding New Themes
+1. Add theme definition to `js/config.js`
+2. Add theme styles to `css/themes.css`
+3. Theme automatically becomes available
+
+### Adding New Features
+- **Gesture handling**: Extend `gestureHandler.js`
+- **Data sources**: Modify `dataLoader.js`
+- **UI components**: Add to `base.css`
+- **Theme-specific features**: Add to `themes.css`
+
+### API Methods
+The main application provides a public API:
+
+```javascript
+// Theme management
+farewellViewer.setTheme('tech');
+farewellViewer.getCurrentTheme();
+farewellViewer.getAvailableThemes();
+
+// Data management
+farewellViewer.loadCustomLetters(lettersArray);
+farewellViewer.loadCustomIntroSlides(slidesArray);
+farewellViewer.addLetter(newLetter);
+```
 
 ## Future Enhancements
 
