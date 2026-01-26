@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/FJP5275.png" alt="Farewell Letter Web App logo"></a>
+ <img width=200px height=200px src="images/logo.svg" alt="Farewell Letter Web App logo"></a>
 </p>
 
 <h3 align="center">Farewell Letter Web App</h3>
@@ -42,6 +42,7 @@
 The Farewell Letter Web App is a sophisticated, cinematic web application designed to showcase farewell messages in an elegant and engaging way. Perfect for office departures, retirement celebrations, or any farewell occasion.
 
 **Key Features:**
+
 - 🎨 **5 Beautiful Themes** (Default, Tech, Business, Girly, Futuristic)
 - 🎬 **Cinematic Introduction** with full-screen trailer experience
 - 📝 **Authentic Letter Format** with realistic paper styling
@@ -66,12 +67,14 @@ You only need a modern web browser that supports ES6 modules:
 ### Installing
 
 1. **Clone or download the repository**
+
 ```bash
 git clone https://github.com/yourusername/farewell-letter-web.git
 cd farewell-letter-web
 ```
 
 2. **Open the application**
+
 ```bash
 # Simply open index.html in your browser
 open index.html
@@ -79,6 +82,7 @@ open index.html
 ```
 
 3. **For development with local server** (recommended)
+
 ```bash
 # Using Python
 python -m http.server 8000
@@ -91,6 +95,7 @@ php -S localhost:8000
 ```
 
 4. **Access the application**
+
 ```
 http://localhost:8000
 ```
@@ -112,6 +117,7 @@ http://localhost:8000
 ### Customizing Content
 
 **Add Your Letters:**
+
 ```json
 // Edit letters.json
 [
@@ -123,6 +129,7 @@ http://localhost:8000
 ```
 
 **Customize Introduction:**
+
 ```json
 // Edit intro.json
 [
@@ -138,22 +145,24 @@ http://localhost:8000
 
 ### Available Themes
 
-| Theme | Description | Best For |
-|-------|-------------|----------|
-| **Default** | Blue/purple elegant cinematic | Formal presentations |
-| **Tech** | Dark green terminal style | Tech companies |
-| **Business** | Professional navy corporate | Business environments |
-| **Girly** | Pink/purple feminine styling | Personal farewells |
-| **Futuristic** | Cyan/neon sci-fi aesthetic | Creative teams |
+| Theme          | Description                   | Best For              |
+| -------------- | ----------------------------- | --------------------- |
+| **Default**    | Blue/purple elegant cinematic | Formal presentations  |
+| **Tech**       | Dark green terminal style     | Tech companies        |
+| **Business**   | Professional navy corporate   | Business environments |
+| **Girly**      | Pink/purple feminine styling  | Personal farewells    |
+| **Futuristic** | Cyan/neon sci-fi aesthetic    | Creative teams        |
 
 ### Changing Themes
 
 **Method 1:** Edit `js/app.js`
+
 ```javascript
 window.farewellViewer.setTheme('tech'); // Uncomment desired theme
 ```
 
 **Method 2:** Edit `js/themeManager.js`
+
 ```javascript
 this.currentTheme = 'business'; // Change default theme
 ```
@@ -165,17 +174,20 @@ this.currentTheme = 'business'; // Change default theme
 Deploy to any static hosting service:
 
 **GitHub Pages:**
+
 1. Push to GitHub repository
 2. Enable GitHub Pages in repository settings
 3. Select source branch (usually `main`)
 
 **Netlify:**
+
 ```bash
 # Drag and drop the folder to Netlify
 # or connect your GitHub repository
 ```
 
 **Vercel:**
+
 ```bash
 npm i -g vercel
 vercel --prod
@@ -186,11 +198,13 @@ vercel --prod
 For production environments, ensure proper MIME types for ES6 modules:
 
 **Apache (.htaccess):**
+
 ```apache
 AddType application/javascript .js
 ```
 
 **Nginx:**
+
 ```nginx
 location ~* \.js$ {
     add_header Content-Type application/javascript;
@@ -238,17 +252,19 @@ css/
 ### Adding New Themes
 
 1. **Define theme in config:**
+
 ```javascript
 // js/config.js
 export const THEMES = {
   myTheme: {
     name: 'My Theme',
-    description: 'Custom theme description'
-  }
+    description: 'Custom theme description',
+  },
 };
 ```
 
 2. **Add theme styles:**
+
 ```css
 /* css/themes.css */
 .theme-myTheme .trailer-background {
@@ -260,7 +276,7 @@ export const THEMES = {
 
 ```javascript
 // Load from API
-const customLetters = await fetch('/api/letters').then(r => r.json());
+const customLetters = await fetch('/api/letters').then((r) => r.json());
 farewellViewer.loadCustomLetters(customLetters);
 ```
 
@@ -279,20 +295,20 @@ gestureHandler.addCustomGesture('pinch', (event) => {
 
 ```javascript
 // Theme Management
-farewellViewer.setTheme(themeName)           // Set active theme
-farewellViewer.getCurrentTheme()             // Get current theme
-farewellViewer.getAvailableThemes()          // List all themes
+farewellViewer.setTheme(themeName); // Set active theme
+farewellViewer.getCurrentTheme(); // Get current theme
+farewellViewer.getAvailableThemes(); // List all themes
 
 // Data Management
-farewellViewer.loadCustomLetters(letters)     // Load custom letters
-farewellViewer.loadCustomIntroSlides(slides)  // Load custom intro
-farewellViewer.addLetter(letter)             // Add single letter
+farewellViewer.loadCustomLetters(letters); // Load custom letters
+farewellViewer.loadCustomIntroSlides(slides); // Load custom intro
+farewellViewer.addLetter(letter); // Add single letter
 
 // Navigation
-farewellViewer.goToNext()                    // Navigate forward
-farewellViewer.goToPrevious()                // Navigate backward
-farewellViewer.transitionToLetters()         // Switch to letters mode
-farewellViewer.transitionToIntro()           // Switch to intro mode
+farewellViewer.goToNext(); // Navigate forward
+farewellViewer.goToPrevious(); // Navigate backward
+farewellViewer.transitionToLetters(); // Switch to letters mode
+farewellViewer.transitionToIntro(); // Switch to intro mode
 ```
 
 ### Event Listeners
@@ -329,9 +345,7 @@ Contributions are welcome! Here's how you can help:
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
-
-See also the list of [contributors](https://github.com/yourusername/farewell-letter-web/contributors) who participated in this project.
+- **@diazjhozua** - _Initial work_ - [github](https://github.com/diazjhozua)
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
