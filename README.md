@@ -42,6 +42,7 @@ A responsive web application to showcase farewell letters with swipe navigation 
 
 ### Documentation
 - `README.md` - This documentation file
+- `LICENSE` - Unlicense (public domain) license file
 
 ## How to Use
 
@@ -266,6 +267,12 @@ farewellViewer.loadCustomLetters(lettersArray);
 farewellViewer.loadCustomIntroSlides(slidesArray);
 farewellViewer.addLetter(newLetter);
 ```
+
+## License
+
+This project is released into the public domain under the [Unlicense](https://unlicense.org/). You are free to use, modify, distribute, and do anything with this code without any restrictions.
+
+See the [LICENSE](LICENSE) file for full details.
 
 ## Future Enhancements
 
