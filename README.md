@@ -69,7 +69,7 @@ You only need a modern web browser that supports ES6 modules:
 1. **Clone or download the repository**
 
 ```bash
-git clone https://github.com/yourusername/farewell-letter-web.git
+git clone https://github.com/diazjhozua/farewell-letter-web.git
 cd farewell-letter-web
 ```
 
