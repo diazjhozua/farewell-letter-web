@@ -292,14 +292,18 @@ body.letter-mode {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 40px 40px 180px 40px;
     z-index: 10;
-    min-height: 80vh;
+    min-height: 100vh;
+    margin: 0 auto;
 }
 
 .letters-slide {
     transition: all 0.8s ease-in-out;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Letter Paper Base Styling */
@@ -423,6 +427,7 @@ body.letter-mode {
     display: flex;
     align-items: center;
     gap: 30px;
+    z-index: 20;
 }
 
 .letters-nav-btn {
@@ -475,6 +480,7 @@ body.letter-mode {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 2px;
     overflow: hidden;
+    z-index: 20;
 }
 
 .letters-progress-fill {
