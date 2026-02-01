@@ -1,3 +1,40 @@
+/* General Mobile Improvements */
+@media (max-width: 768px) {
+    /* Improve touch targets */
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Better text selection on mobile */
+    .letter-message {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+
+    /* Prevent zooming on input focus (if any inputs are added) */
+    input, select, textarea {
+        font-size: 16px;
+    }
+
+    /* Improve scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Better letter paper positioning */
+    .letters-slide {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: calc(100vh - 120px);
+        padding: 60px 0;
+        box-sizing: border-box;
+    }
+}
+
 /* Responsive Trailer Styles */
 @media (max-width: 768px) {
     .trailer-content {
@@ -22,18 +59,6 @@
 
     .trailer-navigation {
         bottom: 100px;
-        gap: 20px;
-    }
-
-    .trailer-nav-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-    }
-
-    .trailer-counter {
-        padding: 10px 20px;
-        font-size: 1rem;
     }
 
     .trailer-progress-bar {
@@ -70,18 +95,6 @@
 
     .trailer-navigation {
         bottom: 80px;
-        gap: 15px;
-    }
-
-    .trailer-nav-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
-    }
-
-    .trailer-counter {
-        padding: 8px 16px;
-        font-size: 0.9rem;
     }
 
     .trailer-progress-bar {
@@ -102,13 +115,16 @@
 /* Responsive Letters Styles */
 @media (max-width: 768px) {
     .letters-content {
-        padding: 20px;
-        min-height: 70vh;
+        padding: 40px 15px 160px 15px;
+        min-height: calc(100vh - 80px);
+        align-items: flex-start;
     }
 
     .letter-paper {
-        padding: 40px 30px;
-        margin: 20px;
+        padding: 35px 25px;
+        margin: 15px;
+        max-width: 90%;
+        transform: perspective(1000px) rotateX(1deg);
     }
 
     .letter-greeting {
@@ -118,33 +134,29 @@
 
     .letter-message {
         font-size: 1rem;
-        line-height: 1.6;
-        text-indent: 20px;
+        line-height: 1.7;
+        max-width: 100%;
+        margin: 0 auto 25px auto;
+        text-align: left;
+        padding: 0 10px;
+    }
+
+    .letter-footer {
+        margin-top: 25px;
+    }
+
+    .letter-closing {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
     }
 
     .letter-from {
-        font-size: 1.6rem;
-    }
-
-    .letters-navigation {
-        bottom: 100px;
-        gap: 20px;
-    }
-
-    .letters-nav-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-    }
-
-    .letters-counter {
-        padding: 10px 20px;
-        font-size: 1rem;
+        font-size: 1.7rem;
     }
 
     .letters-progress-bar {
-        width: 250px;
-        bottom: 70px;
+        width: 280px;
+        bottom: 60px;
     }
 
     .back-to-intro-button {
@@ -159,20 +171,35 @@
 
     .back-intro-btn,
     .skip-intro-btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        border-radius: 8px;
+    }
+
+    .letters-instructions {
+        bottom: 25px;
+        padding: 0 20px;
+    }
+
+    .letters-instructions p {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
     .letters-content {
-        padding: 10px;
-        min-height: 65vh;
+        padding: 30px 10px 140px 10px;
+        min-height: calc(100vh - 60px);
+        align-items: flex-start;
     }
 
     .letter-paper {
-        padding: 30px 20px;
-        margin: 10px;
+        padding: 25px 15px;
+        margin: 8px;
+        max-width: 95%;
+        border-radius: 10px;
+        transform: none;
     }
 
     .letter-greeting {
@@ -181,9 +208,12 @@
     }
 
     .letter-message {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        text-indent: 15px;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        max-width: 100%;
+        margin: 0 auto 20px auto;
+        text-align: left;
+        padding: 0 5px;
     }
 
     .letter-footer {
@@ -191,7 +221,7 @@
     }
 
     .letter-closing {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         margin-bottom: 20px;
     }
 
@@ -199,30 +229,136 @@
         font-size: 1.4rem;
     }
 
-    .letters-navigation {
-        bottom: 80px;
-        gap: 15px;
-    }
-
-    .letters-nav-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
-    }
-
-    .letters-counter {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-
     .letters-progress-bar {
-        width: 200px;
-        bottom: 60px;
+        width: calc(100vw - 40px);
+        max-width: 240px;
+        bottom: 45px;
+        height: 4px;
+    }
+
+    .back-to-intro-button {
+        top: 15px;
+        left: 15px;
     }
 
     .back-intro-btn,
     .skip-intro-btn {
-        padding: 6px 12px;
-        font-size: 0.7rem;
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        min-height: 44px;
+        border-radius: 6px;
+    }
+
+    .letters-instructions {
+        bottom: 15px;
+        padding: 0 15px;
+    }
+
+    .letters-instructions p {
+        font-size: 0.85rem;
+        margin: 0;
+    }
+}
+
+/* Extra Small Devices (iPhone SE, older phones) */
+@media (max-width: 375px) {
+    .letters-content {
+        padding: 25px 8px 130px 8px;
+        min-height: calc(100vh - 50px);
+        align-items: flex-start;
+    }
+
+    .letter-paper {
+        padding: 20px 12px;
+        margin: 5px;
+        max-width: 98%;
+        border-radius: 8px;
+    }
+
+    .letter-greeting {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    .letter-message {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        padding: 0 3px;
+        margin-bottom: 18px;
+    }
+
+    .letter-footer {
+        margin-top: 18px;
+    }
+
+    .letter-closing {
+        font-size: 0.8rem;
+        margin-bottom: 18px;
+    }
+
+    .letter-from {
+        font-size: 1.2rem;
+    }
+
+    .letters-progress-bar {
+        width: calc(100vw - 30px);
+        max-width: 220px;
+        bottom: 40px;
+        height: 3px;
+    }
+
+    .back-to-intro-button {
+        top: 12px;
+        left: 12px;
+    }
+
+    .back-intro-btn,
+    .skip-intro-btn {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        min-height: 40px;
+        border-radius: 6px;
+    }
+
+    .letters-instructions {
+        bottom: 12px;
+        padding: 0 12px;
+    }
+
+    .letters-instructions p {
+        font-size: 0.8rem;
+    }
+
+    /* Trailer adjustments for extra small devices */
+    .trailer-content {
+        padding: 15px;
+    }
+
+    .intro-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+
+    .intro-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .intro-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .trailer-progress-bar {
+        width: calc(100vw - 30px);
+        max-width: 180px;
+        bottom: 50px;
+    }
+
+    .start-letters-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        min-height: 44px;
     }
 }

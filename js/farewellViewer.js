@@ -33,11 +33,7 @@ export class FarewellLetterViewer {
     this.introIcon = document.getElementById('introIcon');
     this.introTitle = document.getElementById('introTitle');
     this.introText = document.getElementById('introText');
-    this.trailerCurrentSlideSpan = document.getElementById('trailerCurrentSlide');
-    this.trailerTotalSlidesSpan = document.getElementById('trailerTotalSlides');
     this.trailerProgressFill = document.getElementById('trailerProgressFill');
-    this.trailerPrevBtn = document.getElementById('trailerPrevBtn');
-    this.trailerNextBtn = document.getElementById('trailerNextBtn');
     this.trailerTransitionButton = document.getElementById('trailerTransitionButton');
     this.trailerInstructionText = document.getElementById('trailerInstructionText');
 
@@ -46,11 +42,7 @@ export class FarewellLetterViewer {
     this.lettersSlide = document.getElementById('lettersSlide');
     this.letterFrom = document.getElementById('letterFrom');
     this.letterMessage = document.getElementById('letterMessage');
-    this.currentSlideSpan = document.getElementById('currentSlide');
-    this.totalSlidesSpan = document.getElementById('totalSlides');
     this.progressFill = document.getElementById('progressFill');
-    this.prevBtn = document.getElementById('prevBtn');
-    this.nextBtn = document.getElementById('nextBtn');
     this.instructionText = document.getElementById('instructionText');
 
     // Shared elements
@@ -66,12 +58,6 @@ export class FarewellLetterViewer {
   }
 
   bindEvents() {
-    // Button navigation
-    this.trailerPrevBtn.addEventListener('click', () => this.goToPrevious());
-    this.trailerNextBtn.addEventListener('click', () => this.goToNext());
-    this.prevBtn.addEventListener('click', () => this.goToPrevious());
-    this.nextBtn.addEventListener('click', () => this.goToNext());
-
     // Mode transition buttons
     this.startLettersBtn.addEventListener('click', () => this.transitionToLetters());
     this.skipIntroBtn.addEventListener('click', () => this.transitionToLetters());
@@ -155,16 +141,10 @@ export class FarewellLetterViewer {
 
   updateIntroDisplay() {
     this.updateIntroContent();
-    this.trailerCurrentSlideSpan.textContent = this.currentIndex + 1;
-    this.trailerTotalSlidesSpan.textContent = this.introSlides.length;
 
     // Update progress bar
     const progress = ((this.currentIndex + 1) / this.introSlides.length) * 100;
     this.trailerProgressFill.style.width = `${progress}%`;
-
-    // Update navigation buttons
-    this.trailerPrevBtn.disabled = this.currentIndex === 0;
-    this.trailerNextBtn.disabled = this.currentIndex === this.introSlides.length - 1;
 
     // Show/hide transition button
     this.trailerTransitionButton.style.display = this.isAtLastIntroSlide() ? 'block' : 'none';
@@ -175,16 +155,10 @@ export class FarewellLetterViewer {
 
   updateLettersDisplay() {
     this.updateLetterContent();
-    this.currentSlideSpan.textContent = this.currentIndex + 1;
-    this.totalSlidesSpan.textContent = this.letters.length;
 
     // Update progress bar
     const progress = ((this.currentIndex + 1) / this.letters.length) * 100;
     this.progressFill.style.width = `${progress}%`;
-
-    // Update navigation buttons
-    this.prevBtn.disabled = this.currentIndex === 0;
-    this.nextBtn.disabled = this.currentIndex === this.letters.length - 1;
 
     // Update instruction text
     this.instructionText.textContent = 'Swipe left or right to navigate between letters';

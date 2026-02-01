@@ -9,13 +9,15 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body.trailer-mode,
 body.letter-mode {
     background: #000;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* Trailer Mode Base Styles */
@@ -302,10 +304,11 @@ body.letter-mode {
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     color: white;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .letters-background {
@@ -337,11 +340,12 @@ body.letter-mode {
     max-width: 900px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 40px 40px 180px 40px;
+    align-items: flex-start;
+    padding: 60px 40px 180px 40px;
     z-index: 10;
     min-height: 100vh;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .letters-slide {
